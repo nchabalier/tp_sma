@@ -12,15 +12,6 @@ int main()
 {
     srand(time(NULL));
 
-    /*Position pos(10,10);
-    Agent newAgent ("Marine", pos, 0, 10, 100);
-    newAgent.takeDamage(20);
-    newAgent.display();
-
-    Building newBuilding("Batiment", pos, 0, 10, 1000);
-    newBuilding.display();
-
-    cout << "-----------------" << endl;*/
 
     Game game;
     game.play();
