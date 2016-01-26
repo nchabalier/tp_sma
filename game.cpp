@@ -5,11 +5,11 @@ Game::Game()
     Position pos(1,1);
     Building building1("Barracks", pos, 0, 10, 1000);
     Position pos2(HEIGHT-2,WIDTH-2);
-    Building building2("Gateway", pos2, 1, 10, 1000);
+    Building building2("Gateway", pos2, 0, 10, 1000);
     Position pos3(1,WIDTH-2);
-    Building building3("Hatchery", pos3, 2, 10, 1000);
+    Building building3("Hatchery", pos3, 1, 10, 1000);
     Position pos4(HEIGHT-2, 1);
-    Building building4("Hatchery", pos4, 4, 10, 1000);
+    Building building4("Hatchery", pos4, 1, 10, 1000);
 
     VBuilding_.push_back(building1);
     VBuilding_.push_back(building2);

@@ -28,13 +28,12 @@ public:
     double isInSight(Position pos) const;
 
     //return the closest unit, if there is an unit in sight, else return NULL
-    void closestUnit(/*void **targetIterator,*/ double &bestDistance, vector<Unit> &VUnit, Position &posTarget);
+    void closestUnit(double &bestDistance, Position &posTarget, vector<Unit> &VUnit);
 
-    void closestBuilding(/*void **targetIterator,*/ double& bestDistance, Position &posTarget, vector<Building> &VBuilding);
+    void closestBuilding(double& bestDistance, Position &posTarget, vector<Building> &VBuilding);
 
-    void closestAgent(/*void **targetIterator,*/ vector<Unit> &VUnit, double& bestDistance, Position &posTarget, vector<Building> &VBuilding);
+    void closestAgent(double& bestDistance, Position &posTarget, vector<Unit> &VUnit, vector<Building> &VBuilding);
 
-    ///TODO : passe un objet Building et renvoie false si le building est détruit
     void doAction(vector<Building> &VBuilding, vector<Unit> &VUnit);
 
     //Move to the target
@@ -43,6 +42,12 @@ public:
     void attackUnit(Unit& unit);
 
     void attackBuilding(Building &building);
+
+    //Set the new waiting time after a move
+    void movingRecovery() {waiting_ = moveSpeed_;}
+
+    //Set the new waiting time after
+    void attackRecovery() {waiting_ = attackSpeed_;}
 };
 
 #endif // UNIT_H

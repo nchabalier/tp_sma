@@ -13,7 +13,6 @@ public:
     //virtual ~Building();
     Building(string name, Position pos, int team, int waiting, int hitPoints): Agent(name, pos, team, waiting, hitPoints) {}
     Unit produce();
-    //virtual ~Building();
 };
 
 #endif // BUILDING_H
