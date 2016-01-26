@@ -15,10 +15,8 @@ int main()
 
     Game game;
     game.play();
-    while(game.play())/*game.isFinish_ == false*/
+    while(game.play())
     {
-        //game.play();
-        //game.displayDebug();
         game.diplayMap();
         Sleep(10);
     }

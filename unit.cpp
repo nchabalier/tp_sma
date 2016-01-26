@@ -1,6 +1,6 @@
 #include "unit.h"
-
 #include <cmath>
+
 void * targetIterator = nullptr;
 
 Unit::Unit()
@@ -21,23 +21,14 @@ double Unit::isInSight(Position pos) const
         return -1;
 }
 
-
-
-
-
-
-
 void Unit::doAction(vector<Building> &VBuilding, vector<Unit> &VUnit)
 {
-    //Unit* target = nullptr;
     double bestDistance = -1;
     Position posTarget;
-    //vector<Agent>::iterator targetIterator;
-    //void* targetIterator;
-              // pointer to void
-    //closestUnit(targetIterator, bestDistance, VUnit, posTarget, VBuilding);
-    closestAgent(/*&targetIterator,*/ VUnit, bestDistance, posTarget, VBuilding);
 
+    closestAgent(bestDistance, posTarget, VUnit, VBuilding);
+
+    //cast du pointeur target en vector<Agent> iterator
     vector<Agent>::iterator *targetIterator2 = static_cast<vector<Agent>::iterator *>(targetIterator);
 
     if(bestDistance <= range_)
@@ -45,13 +36,15 @@ void Unit::doAction(vector<Building> &VBuilding, vector<Unit> &VUnit)
         //cout << "A l'attaque" << endl;
         //attackUnit(*targetIterator);
         (*targetIterator2)->takeDamage(attackDamage_);
-        //cout << targetIterator->getHitPoints() << endl;
+        this->movingRecovery();
 
+        //cout << targetIterator->getHitPoints() << endl;
     }
     else
     {
         //cout << "En direction de la cible" << endl;
         moveUnit(posTarget);
+        this->attackRecovery();
     }
 }
 
@@ -92,18 +85,18 @@ void Unit::attackBuilding(Building &building)
 
 
 //--------------------------------------------------------Closest Target---------------------------------------
-void Unit::closestAgent(/*void ** targetIterator,*/ vector<Unit> &VUnit, double& bestDistance, Position &posTarget, vector<Building> &VBuilding)
+void Unit::closestAgent(double& bestDistance, Position &posTarget, vector<Unit> &VUnit, vector<Building> &VBuilding)
 {
-    closestBuilding(/*&targetIterator,*/ bestDistance, posTarget, VBuilding);
+    closestBuilding(bestDistance, posTarget, VBuilding);
     if(bestDistance > sight_) //If no Building is in sight
     {
-        closestUnit(/*&targetIterator,*/ bestDistance, VUnit, posTarget);
+        closestUnit(bestDistance, posTarget, VUnit);
     }
 }
 
 //--------------------------------------------------------Closest Building---------------------------------------
 //Return the closest Building in entire map
-void Unit::closestBuilding(/*void **targetIterator,*/ double& bestDistance, Position &posTarget, vector<Building> &VBuilding)
+void Unit::closestBuilding(double& bestDistance, Position &posTarget, vector<Building> &VBuilding)
 {
     vector<Building>::iterator closestUnit = VBuilding.end();
 
@@ -120,13 +113,12 @@ void Unit::closestBuilding(/*void **targetIterator,*/ double& bestDistance, Posi
              }
         }
     }
-    //vector<Agent>::iterator* cu = static_cast<vector<Agent>::iterator*>(&closestUnit);
     targetIterator = &closestUnit;
 }
 
 //--------------------------------------------------------Closest Unit---------------------------------------
 //Return the closest Unit only if it is in sight
-void Unit::closestUnit(/*void ** targetIterator,*/ double& bestDistance, vector<Unit> &VUnit, Position &posTarget)
+void Unit::closestUnit(double& bestDistance, Position &posTarget, vector<Unit> &VUnit)
 {
     vector<Unit>::iterator closestUnit = VUnit.end();
 
@@ -143,10 +135,6 @@ void Unit::closestUnit(/*void ** targetIterator,*/ double& bestDistance, vector<
             }
         }
     }
-
-    //Debugage
-    /*if(closestUnit != VUnit.end())
-        cout << closestUnit->pos_.getX() << ", " << closestUnit->pos_.getY() << endl;*/
 
     if(closestUnit != VUnit.end())
         targetIterator = &closestUnit;
