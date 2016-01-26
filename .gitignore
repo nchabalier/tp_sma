@@ -1,0 +1,18 @@
+# General directory
+bin*/*
+build*/*
+cache/*
+config/*
+doc/*
+external/*
+
+# General files
+*.exe
+*.dll
+*~
+*.txt.user
+*.qm
+*.log
+.DS_Store
+*.pro.user*
+*.o
