@@ -20,11 +20,7 @@ private:
 public:
     Unit();
     //virtual ~Unit();
-    Unit(string name, Position pos, int team, int waiting, int hitPoints,
-          int sight, int moveSpeed, int range, int attackDamage, int attackSpeed) :
-        Agent(name, pos, team, waiting, hitPoints),
-        sight_(sight), moveSpeed_(moveSpeed), range_(range), attackDamage_(attackDamage), attackSpeed_(attackSpeed){}
-
+    Unit(string name, Position pos, int team);
     //Unit(Position pos) : pos_(&pos) {}
     double getDistance(Position pos) const;
 
