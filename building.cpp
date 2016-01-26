@@ -6,6 +6,32 @@ Building::Building()
 {
 }
 
+Building::Building(int i)
+{
+    switch(i)
+    case 1 :
+    {
+        name_ = "Barracks";
+        hitPoints_ = 1500;
+        break;
+    }
+    case 2 :
+    {
+        name_ = "Gateway";
+        hitPoints_ = 2000;
+        break;
+    }
+    case 3 :
+    {
+        name_ = "Hatchery";
+        hitPoints_ = 1500;
+        break;
+    }
+
+
+
+}
+
 Unit Building::produce()
 {
 
@@ -34,21 +60,21 @@ Unit Building::produce()
     //TODO : afficher une erreur si le batiment n'est pas un de ces 3 la
     if(name_ == "Barracks")
     {
-        newName = "Marine";
-        waitingTime = 3;
+        newName = "Terran";
+        waitingTime = 25;
     }
     else if(name_ == "Gateway")
     {
-        newName = "Zealot";
-        waitingTime = 4;
+        newName = "Protoss";
+        waitingTime = 38;
     }
     else if(name_ == "Hatchery")
     {
-        newName = "Ergling";
-        waitingTime = 3;
+        newName = "Zerg";
+        waitingTime = 24;
     }
     //Unit(string name, Position pos, int team, int waiting, int hitPoints, int sight, int moveSpeed, int range, int attackDamage, int attackSpeed)
-    Unit newUnit(newName, newPos, team_, waitingTime, 100, 3, 2, 2, 20, 60);
+    Unit newUnit(newName, newPos, team_);
 
     return newUnit;
 }

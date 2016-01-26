@@ -22,7 +22,6 @@ class Position
 class Agent
 {
 protected:
-    static int compteur_;
     int id_;
     string name_;
     Position pos_;
