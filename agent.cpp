@@ -1,5 +1,6 @@
 #include "agent.h"
 
+int Agent::compteur_ = 0;
 
 Agent::Agent()
 {

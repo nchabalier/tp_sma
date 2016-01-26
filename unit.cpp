@@ -7,6 +7,37 @@ Unit::Unit()
 {
 }
 
+Unit::Unit(string name, Position pos, int team)
+{
+    if (name == "Terran")
+    {
+        Agent(name, pos, team, 0, 45);
+        sight_ = 9;
+        moveSpeed_ = 4;
+        range_ = 5;
+        attackDamage_ = 6;
+        attackSpeed_ = 8;
+    }
+    else if (name == "Protoss")
+    {
+        Agent(name, pos, team, 0, 150);
+        sight_ = 8;
+        moveSpeed_ = 4;
+        range_ = 1;
+        attackDamage_ = 16;
+        attackSpeed_ = 12;
+    }
+    else if (name == "Zerg")
+    {
+        Agent(name, pos, team, 0, 35);
+        sight_ = 9;
+        moveSpeed_ = 3;
+        range_ = 1;
+        attackDamage_ = 5;
+        attackSpeed_ = 7;
+    }
+}
+
 double Unit::getDistance(Position pos) const
 {
     return sqrt(pow(getPosX()-pos.getX(), 2) + pow(getPosY()-pos.getY(), 2));

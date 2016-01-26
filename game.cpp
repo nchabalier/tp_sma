@@ -3,13 +3,13 @@
 Game::Game()
 {
     Position pos(1,1);
-    Building building1("Barracks", pos, 0, 10, 1000);
+    Building building1(1, pos, 0);
     Position pos2(HEIGHT-2,WIDTH-2);
-    Building building2("Gateway", pos2, 0, 10, 1000);
+    Building building2(2, pos2, 0);
     Position pos3(1,WIDTH-2);
-    Building building3("Hatchery", pos3, 1, 10, 1000);
+    Building building3(3, pos3, 1);
     Position pos4(HEIGHT-2, 1);
-    Building building4("Hatchery", pos4, 1, 10, 1000);
+    Building building4(3, pos4, 1);
 
     VBuilding_.push_back(building1);
     VBuilding_.push_back(building2);

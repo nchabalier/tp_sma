@@ -6,26 +6,25 @@ Building::Building()
 {
 }
 
-Building::Building(int i)
+Building::Building(int i, Position pos, int team)
 {
     switch(i)
-    case 1 :
     {
-        name_ = "Barracks";
-        hitPoints_ = 1500;
-        break;
-    }
-    case 2 :
-    {
-        name_ = "Gateway";
-        hitPoints_ = 2000;
-        break;
-    }
-    case 3 :
-    {
-        name_ = "Hatchery";
-        hitPoints_ = 1500;
-        break;
+        case 1 :
+        {
+            Agent("Barracks", pos, team, 0, 1500);
+            break;
+        }
+        case 2 :
+        {
+            Agent("Gateway", pos, team, 0, 2000);
+            break;
+        }
+        case 3 :
+        {
+            Agent("Hatchery", pos, team, 0, 1500);
+            break;
+        }
     }
 
 
@@ -71,7 +70,7 @@ Unit Building::produce()
     else if(name_ == "Hatchery")
     {
         newName = "Zerg";
-        waitingTime = 24;
+        waitingTime = 12;
     }
     //Unit(string name, Position pos, int team, int waiting, int hitPoints, int sight, int moveSpeed, int range, int attackDamage, int attackSpeed)
     Unit newUnit(newName, newPos, team_);

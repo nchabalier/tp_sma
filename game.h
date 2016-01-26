@@ -18,7 +18,7 @@ private:
 public:
     Game();
     bool isContinued() {return continue_;}
-    bool setContinue(bool f) {continue_ = f;}
+    void setContinue(bool f) {continue_ = f;}
     bool play();
     void displayDebug() const;
     void diplayMap() const;
