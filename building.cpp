@@ -6,9 +6,10 @@ Building::Building()
 {
 }
 
-Building::Building(int i, Position pos, int team)
+Building::Building(int i, Position pos, int team) : Agent("Barracks", pos, team, 0, 1500)
 {
-    switch(i)
+    //Appel le constructeur Agent avec n'importe quoi dedans au départ puis change les valeurs ici !
+   /* switch(i)
     {
         case 1 :
         {
@@ -26,7 +27,7 @@ Building::Building(int i, Position pos, int team)
             break;
         }
     }
-
+*/
 
 
 }
@@ -74,6 +75,5 @@ Unit Building::produce()
     }
     //Unit(string name, Position pos, int team, int waiting, int hitPoints, int sight, int moveSpeed, int range, int attackDamage, int attackSpeed)
     Unit newUnit(newName, newPos, team_);
-
     return newUnit;
 }

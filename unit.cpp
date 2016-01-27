@@ -7,11 +7,11 @@ Unit::Unit()
 {
 }
 
-Unit::Unit(string name, Position pos, int team)
+Unit::Unit(string name, Position pos, int team) : Agent(name, pos, team, 0, 45)
 {
     if (name == "Terran")
     {
-        Agent(name, pos, team, 0, 45);
+        //Agent(name, pos, team, 0, 45);
         sight_ = 9;
         moveSpeed_ = 4;
         range_ = 5;
@@ -20,7 +20,7 @@ Unit::Unit(string name, Position pos, int team)
     }
     else if (name == "Protoss")
     {
-        Agent(name, pos, team, 0, 150);
+        //Agent(name, pos, team, 0, 150);
         sight_ = 8;
         moveSpeed_ = 4;
         range_ = 1;
@@ -29,7 +29,7 @@ Unit::Unit(string name, Position pos, int team)
     }
     else if (name == "Zerg")
     {
-        Agent(name, pos, team, 0, 35);
+        //Agent(name, pos, team, 0, 35);
         sight_ = 9;
         moveSpeed_ = 3;
         range_ = 1;
