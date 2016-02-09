@@ -41,7 +41,7 @@ public:
 
     void doAction(vector<Building *> &VBuilding, vector<Unit *> &VUnit);
 
-    //Move to the target
+    //Move to the target if its possible
     void moveUnit(Position &pos);
 
     void attackUnit(Unit& unit);
