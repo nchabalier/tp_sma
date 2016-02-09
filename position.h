@@ -1,6 +1,13 @@
 #ifndef POSITION_H
 #define POSITION_H
 
+//#include "building.h"
+//#include "unit.h"
+#include <vector>
+using namespace std;
+
+class Building;
+class Unit;
 
 class Position
 {
@@ -14,6 +21,8 @@ class Position
     int getX() const {return x_;}
     int getY() const {return y_;}
     void move(int x, int y) { x_ = x; y_ = y;}
+    bool isOccupied(vector<Building *> &VBuilding, vector<Unit *> &VUnit) const;
+
 };
 
 #endif // POSITION_H
