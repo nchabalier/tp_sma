@@ -3,14 +3,17 @@
 Game::Game()
 {
     Position pos(1,1);
-    Building building1(1, pos, 0);
+    //Building building1(1, pos, 0);
+    Barracks * building1 = new Barracks(pos, 0);
     Position pos2(HEIGHT-2,WIDTH-2);
-    Building building2(2, pos2, 0);
+    //Building building2(2, pos2, 0);
+    Gateway * building2 = new Gateway(pos2, 0);
     Position pos3(1,WIDTH-2);
-    Building building3(3, pos3, 1);
+    //Building building3(3, pos3, 1);
+    Hatchery * building3 = new Hatchery(pos3, 1);
     Position pos4(HEIGHT-2, 1);
-    Building building4(3, pos4, 1);
-
+    //Building building4(3, pos4, 1);
+    Hatchery * building4 = new Hatchery(pos4, 1);
     VBuilding_.push_back(building1);
     VBuilding_.push_back(building2);
     VBuilding_.push_back(building3);
@@ -23,33 +26,38 @@ bool Game::play()
     //----------------------Production of Unit------------------------------------
     for(unsigned int i =0; i<VBuilding_.size(); i++)
     {
-        if(VBuilding_[i].isReady())
+        if(VBuilding_[i]->isReady())
         {
             /*Building* b = static_cast<Building *>(&(VBuilding_[i]));
             VUnit_.push_back(b->produce());*/
-            VUnit_.push_back(VBuilding_[i].produce());
-            VBuilding_[i].setWaiting(5); // New Waiting time before next produce
+            VBuilding_[i]->produce(VUnit_);
+            //VBuilding_[i].setWaiting(5); // New Waiting time before next produce
         }
         else
         {
-            VBuilding_[i].wait();
+            VBuilding_[i]->wait();
         }
     }
 
     //-----------------------Unit actions------------------------------------------
-    vector<Unit>::iterator it = VUnit_.begin();
+    vector<Unit *>::iterator it = VUnit_.begin();
     while(it < VUnit_.end())
     {
-        if(it->isReady())
+        if((*it)->isReady())
         {
-            it->doAction(VBuilding_, VUnit_);
-            it->setWaiting(5);
+            (*it)->doAction(VBuilding_, VUnit_);
+            //(*it)->setWaiting(5);
         }
         else
         {
-            it->wait();
+            (*it)->wait();
         }
         it++;
+    }
+
+    for(unsigned int i =0; i<VBuilding_.size(); i++)
+    {
+        cout <<  VBuilding_[i]->getName() << " : " << VBuilding_[i]->getHitPoints() << endl;
     }
 
     //Erase Unit and Building who have hitPoints < 0
@@ -59,7 +67,7 @@ bool Game::play()
     //Winner
     if(VBuilding_.size() == 1)
     {
-       cout << "Team " << VBuilding_[0].getTeam() << " gagne !" << endl;
+       cout << "Team " << VBuilding_[0]->getTeam() << " gagne !" << endl;
        setContinue(false);
     }
 
@@ -73,13 +81,13 @@ void Game::displayDebug() const
     cout << endl << "Display of Building" << endl << endl;
     for(auto it : VBuilding_)
     {
-        it.display();
+        it->display();
     }
 
     cout << endl << "Display of Unit" << endl << endl;
     for(auto it : VUnit_)
     {
-        it.display();
+        it->display();
     }
 }
 
@@ -101,13 +109,13 @@ void Game::diplayMap() const
     //Building display
     for(auto it : VBuilding_)
     {
-        map[it.getPosX()][it.getPosY()] = it.getName()[0];
+        map[it->getPosX()][it->getPosY()] = it->getName()[0];
     }
 
     //Unit display
     for(auto it : VUnit_)
     {
-        map[it.getPosX()][it.getPosY()] = it.getName()[0];
+        map[it->getPosX()][it->getPosY()] = it->getName()[0];
     }
 
     //Map display
@@ -125,12 +133,12 @@ void Game::diplayMap() const
 
 void Game::eraseDeadBuilding()
 {
-    vector<Building>::iterator it = VBuilding_.begin();
+    vector<Building *>::iterator it = VBuilding_.begin();
     bool erased = false;
 
     while(it != VBuilding_.end() && erased == false)
     {
-        if(it->isDead())
+        if((*it)->isDead())
         {
             VBuilding_.erase(it);
             erased = true;
@@ -141,15 +149,15 @@ void Game::eraseDeadBuilding()
 
 void Game::eraseDeadUnit()
 {
-    vector<Unit>::iterator it = VUnit_.begin();
+    vector<Unit *>::iterator it = VUnit_.begin();
     bool erased = false;
 
     while(it != VUnit_.end() && erased == false)
     {
-        if(it->isDead())
+        if((*it)->isDead())
         {
             VUnit_.erase(it);
-            erased = true;
+            //erased = true;
         }
         it++;
     }
@@ -159,7 +167,7 @@ bool Game::emptyTeamBuilding(int team) const
 {
     for(auto it : VBuilding_)
     {
-        if(it.getTeam() == team)
+        if(it->getTeam() == team)
             return false;
     }
     return true;
@@ -169,7 +177,7 @@ bool Game::emptyTeamUnit(int team) const
 {
     for(auto it : VUnit_)
     {
-        if(it.getTeam() == team)
+        if(it->getTeam() == team)
             return false;
     }
     return true;

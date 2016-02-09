@@ -12,8 +12,8 @@
 class Game
 {
 private:
-    vector<Building> VBuilding_;
-    vector<Unit> VUnit_;
+    vector<Building *> VBuilding_;
+    vector<Unit *> VUnit_;
     bool continue_;
 public:
     Game();

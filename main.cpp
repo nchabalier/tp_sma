@@ -10,6 +10,7 @@ using namespace std;
 
 int main()
 {
+    int i=0;
     srand(time(NULL));
 
 
@@ -18,7 +19,9 @@ int main()
     while(game.play())
     {
         game.diplayMap();
-        Sleep(10);
+        Sleep(1);
+        cout << i << endl;
+        i++;
     }
 
     return 0;
