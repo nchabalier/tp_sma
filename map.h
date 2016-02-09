@@ -1,28 +1,33 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include "agent.h"
+#include "position.h"
 
-class Agent;
-
-class Coordinate
+class Map
 {
-	protected:
-	int x_;
-	int y_;
-	Agent * occupier_;
-	
-	public:
-	Coordinate();
-	Coordinate(int x, int y);
-	
-	int 	getX() {return x_;}
-	int 	getY() {return y_;}
-	Agent * getOccupier() {return occupier_;}
-	
-    void 	setOccupier(Agent * newAgent) {occupier_ = newAgent;}
-	
-    ~Coordinate();
+private:
+    static Map* singleton;
+    Map(); // constructeur privé
+
+    //Empecher la copie
+    Map(const Map&);
+    void operator=(const Map&);
+
+    char map_[20][20];
+
+public:
+    static Map *get()
+    {
+        if(!singleton)
+            singleton = new Map;
+        return singleton;
+    }
+
+    void display() const;
+    void add(char letter, int x, int y);
+    void add(char letter, Position pos);
+    void move(Position posPrec, Position posSuiv);
+
 };
-	
-#endif
+
+#endif // MAP_H

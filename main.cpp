@@ -19,7 +19,7 @@ int main()
     while(game.play())
     {
         game.diplayMap();
-        Sleep(1);
+        Sleep(10);
         cout << i << endl;
         i++;
     }

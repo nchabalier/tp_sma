@@ -1,7 +1,7 @@
 #include "unit.h"
 #include <cmath>
 
-Agent * targetIterator = nullptr;
+#include "map.h"
 
 Unit::Unit()
 {
@@ -92,26 +92,36 @@ void Unit::doAction(vector<Building *> &VBuilding, vector<Unit *> &VUnit)
 void Unit::moveUnit(Position& pos)
 {
     int alea = rand()%2;
-    int newPosX = getPosX();
-    int newPosY = getPosY();
+    Position newPos(getPosX(), getPosY());
+
+    Map* map = Map::get();
 
     //Move vertically
-    if(alea == 0 || getPosY() == pos.getY())
+    if((alea == 0 || getPosY() == pos.getY()))
     {
         if(getPosX() < pos.getX())
-            newPosX++;
+        {
+            newPos.setX(newPos.getX()+1);
+        }
         else
-            newPosX--;
+        {
+            newPos.setX(newPos.getX()-1);
+        }
     }
     else //Move horizontally
     {
         if(getPosY() < pos.getY())
-            newPosY++;
+        {
+            newPos.setY(newPos.getY()+1);
+        }
         else
-            newPosY--;
+        {
+            newPos.setY(newPos.getY()-1);
+        }
     }
 
-    pos_.move(newPosX, newPosY);
+    map->move(this->pos_, newPos);
+    pos_.move(newPos.getX(), newPos.getY()); //TODO : faire passer une Position direcetement
 }
 
 void Unit::attackUnit(Unit &unit)
@@ -133,7 +143,9 @@ Agent* Unit::closestAgent(double& bestDistance, Position &posTarget, vector<Unit
     closestA = (Agent *)closestBuilding(bestDistance, posTarget, VBuilding);
     if(bestDistance > sight_) //If no Building is in sight
     {
-        closestA = (Agent *)closestUnit(bestDistance, posTarget, VUnit);
+        Agent* closestTemp = (Agent *)closestUnit(bestDistance, posTarget, VUnit);
+        if(closestTemp != nullptr)
+            closestA = closestTemp;
     }
     else
     {
@@ -161,7 +173,6 @@ Building* Unit::closestBuilding(double& bestDistance, Position &posTarget, vecto
              }
         }
     }
-    targetIterator = (Agent *)closestB;
     return closestB;
 }
 
@@ -185,7 +196,5 @@ Unit* Unit::closestUnit(double& bestDistance, Position &posTarget, vector<Unit *
         }
     }
 
-    if(closestU != nullptr)
-        targetIterator = closestU;
     return closestU;
 }

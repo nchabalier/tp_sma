@@ -1,11 +1,47 @@
 #include "map.h"
+#include <iostream>
 
-Coordinate::Coordinate() {}
+using namespace std;
 
-Coordinate::Coordinate(int x, int y)
+Map *Map::singleton = nullptr;
+
+Map::Map()
 {
-	x_ = x;
-	y_ = y;
+    cout << "Construction Map" << endl;
+    for(int i = 0; i < 20; i++)
+    {
+        for(int j = 0; j < 20; j++)
+        {
+            map_[i][j] = ' ';
+        }
+    }
 }
 
-Coordinate::~Coordinate() {}
+void Map::display() const
+{
+    for(int i = 0; i<20; i++)
+    {
+        cout << '|';
+        for(int j = 0; j<20; j++)
+        {
+            cout << map_[i][j];
+        }
+        cout << '|' << endl;
+    }
+}
+
+void Map::add(char letter, int x, int y)
+{
+    map_[x][y] = letter;
+}
+
+void Map::add(char letter, Position pos)
+{
+    map_[pos.getX()][pos.getY()] = letter;
+}
+
+void Map::move(Position posPrec, Position posSuiv)
+{
+    map_[posSuiv.getX()][posSuiv.getY()] = map_[posPrec.getX()][posPrec.getY()];
+    map_[posPrec.getX()][posPrec.getY()] = ' ';
+}

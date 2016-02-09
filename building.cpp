@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include <cmath>
 
+#include "map.h"
+
 Building::Building()
 {
 }
@@ -101,6 +103,8 @@ void Barracks::produce(vector<Unit *> &VUnit_)
     setWaiting(25);
     Marine * newMarine = new Marine(newPos, team_);
 
+    Map* map = Map::get();
+    map->add(newMarine->getName()[0], newPos);
     VUnit_.push_back(newMarine);
     cout << "Marine produit" << endl;
 }
@@ -129,6 +133,8 @@ void Gateway::produce(vector<Unit *> &VUnit_)
     setWaiting(38);
     Zealot * newZealot = new Zealot(newPos, team_);
 
+    Map* map = Map::get();
+    map->add(newZealot->getName()[0], newPos);
     VUnit_.push_back(newZealot);
     cout << "Zealot produit" << endl;
 }
@@ -156,9 +162,12 @@ void Hatchery::produce(vector<Unit *> &VUnit_)
 
     setWaiting(24);
     Ling * newLing1 = new Ling(newPos, team_);
-    Ling * newLing2 = new Ling(newPos, team_);
+    //Ling * newLing2 = new Ling(newPos, team_); //TODO: NE PAS METTRE 2 UNITE SUR LA MEME CASE
 
+    Map* map = Map::get();
+    map->add(newLing1->getName()[0], newPos);
+    //map->add(newLing2->getName()[0], newPos);
     VUnit_.push_back(newLing1);
-    VUnit_.push_back(newLing2);
+    //VUnit_.push_back(newLing2);
     cout << "2 Lings produits" << endl;
 }

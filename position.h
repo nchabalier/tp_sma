@@ -20,6 +20,8 @@ class Position
 
     int getX() const {return x_;}
     int getY() const {return y_;}
+    void setX(int x) { x_ = x;}
+    void setY(int y) { y_ = y;}
     void move(int x, int y) { x_ = x; y_ = y;}
     bool isOccupied(vector<Building *> &VBuilding, vector<Unit *> &VUnit) const;
 

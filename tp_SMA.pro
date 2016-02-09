@@ -4,13 +4,15 @@ SOURCES += \
     building.cpp \
     unit.cpp \
     game.cpp \
-    position.cpp
+    position.cpp \
+    map.cpp
 
 HEADERS += \
     agent.h \
     building.h \
     unit.h \
     game.h \
-    position.h
+    position.h \
+    map.h
 
 CONFIG += c++11

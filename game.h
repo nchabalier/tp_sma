@@ -26,6 +26,7 @@ public:
     void eraseDeadUnit();
     bool emptyTeamBuilding(int team) const; //true if empty
     bool emptyTeamUnit(int team) const; //true if empty
+    bool isTeamAlive();
 };
 
 #endif // GAME_H
