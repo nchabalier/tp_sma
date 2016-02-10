@@ -27,6 +27,8 @@ public:
     void add(char letter, int x, int y);
     void add(char letter, Position pos);
     void move(Position posPrec, Position posSuiv);
+    bool isOccupied(Position pos) const;
+    void erase(Position pos);
 
 };
 

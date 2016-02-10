@@ -45,3 +45,16 @@ void Map::move(Position posPrec, Position posSuiv)
     map_[posSuiv.getX()][posSuiv.getY()] = map_[posPrec.getX()][posPrec.getY()];
     map_[posPrec.getX()][posPrec.getY()] = ' ';
 }
+
+bool Map::isOccupied(Position pos) const
+{
+    if(map_[pos.getX()][pos.getY()] == ' ')
+        return false;
+    else
+        return true;
+}
+
+void Map::erase(Position pos)
+{
+    map_[pos.getX()][pos.getY()] = ' ';
+}

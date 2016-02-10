@@ -92,36 +92,56 @@ void Unit::doAction(vector<Building *> &VBuilding, vector<Unit *> &VUnit)
 void Unit::moveUnit(Position& pos)
 {
     int alea = rand()%2;
-    Position newPos(getPosX(), getPosY());
+    int posToSelec = -1;
+    Position newPos[2];
 
     Map* map = Map::get();
 
     //Move vertically
-    if((alea == 0 || getPosY() == pos.getY()))
-    {
-        if(getPosX() < pos.getX())
-        {
-            newPos.setX(newPos.getX()+1);
-        }
-        else
-        {
-            newPos.setX(newPos.getX()-1);
-        }
-    }
-    else //Move horizontally
-    {
-        if(getPosY() < pos.getY())
-        {
-            newPos.setY(newPos.getY()+1);
-        }
-        else
-        {
-            newPos.setY(newPos.getY()-1);
-        }
-    }
+    if(getPosX() < pos.getX())
+        newPos[0].setX(getPosX()+1);
+    else
+        newPos[0].setX(getPosX()-1);
 
-    map->move(this->pos_, newPos);
-    pos_.move(newPos.getX(), newPos.getY()); //TODO : faire passer une Position direcetement
+    newPos[0].setY(getPosY());
+
+    //Move horizontally
+    if(getPosY() < pos.getY())
+       newPos[1].setY(getPosY()+1);
+    else
+       newPos[1].setY(getPosY()-1);
+
+    newPos[1].setX(getPosX());
+
+    if(!map->isOccupied(newPos[0]) || !map->isOccupied(newPos[1]))
+    {
+        if(!map->isOccupied(newPos[0]) && !map->isOccupied(newPos[1]))
+        {
+            //random select
+            cout << "select alea" << endl;
+            posToSelec = alea;
+        }
+        else
+        {
+            if (!map->isOccupied(newPos[0])) //Select vertical movement
+            {
+                posToSelec = 0;
+                cout << "select 0" << endl;
+            }
+            else //Select horizontal movement
+            {
+                posToSelec = 1;
+                cout << "select 1" << endl;
+            }
+        }
+    }
+    if(posToSelec != -1)
+    {
+        map->move(this->pos_, newPos[posToSelec]);
+        pos_.move(newPos[posToSelec].getX(), newPos[posToSelec].getY()); //TODO : faire passer une Position direcetement
+    }
+    else
+        cout << "pas de position" << endl;
 }
 
 void Unit::attackUnit(Unit &unit)

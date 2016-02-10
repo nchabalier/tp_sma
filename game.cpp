@@ -145,11 +145,13 @@ void Game::eraseDeadBuilding()
 {
     vector<Building *>::iterator it = VBuilding_.begin();
     bool erased = false;
+    Map* map = Map::get();
 
     while(it != VBuilding_.end() && erased == false)
     {
         if((*it)->isDead())
         {
+            map->erase((*it)->getPos());
             VBuilding_.erase(it);
             erased = true;
         }
@@ -161,11 +163,13 @@ void Game::eraseDeadUnit()
 {
     vector<Unit *>::iterator it = VUnit_.begin();
     bool erased = false;
+    Map* map = Map::get();
 
     while(it != VUnit_.end() && erased == false)
     {
         if((*it)->isDead())
         {
+            map->erase((*it)->getPos());
             VUnit_.erase(it);
             //erased = true;
         }
