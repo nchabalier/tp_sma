@@ -84,30 +84,22 @@ Barracks::Barracks(Position pos, int team) : Building("Barracks", pos, team, 0, 
 
 }
 
-//TODO : vérifier que la position n'est pas déja prise
 void Barracks::produce(vector<Unit *> &VUnit_)
 {
-    int alea = rand()%4;
-    Position newPos;
+    Map* map = Map::get();
+    Position newPos = map->findPositionAvailable(pos_);
 
-    if(alea < 2)
+    if(newPos.getX() != -1) //Si la position est bien disponible
     {
-        alea = pow(-1, rand()%2);
-        newPos.move(pos_.getX()+alea, pos_.getY());
+        setWaiting(25);
+        Marine * newMarine = new Marine(newPos, team_);
+
+        map->add(newMarine->getName()[0], newPos);
+        VUnit_.push_back(newMarine);
+        cout << "Marine produit" << endl;
     }
     else
-    {
-        alea = pow(-1, rand()%2);
-        newPos.move(pos_.getX(), pos_.getY()+alea);
-    }
-
-    setWaiting(25);
-    Marine * newMarine = new Marine(newPos, team_);
-
-    Map* map = Map::get();
-    map->add(newMarine->getName()[0], newPos);
-    VUnit_.push_back(newMarine);
-    cout << "Marine produit" << endl;
+        cout << "Production impossible de Marine" << endl;
 }
 
 Gateway::Gateway(Position pos, int team) : Building("Gateway", pos, team, 0, 2000)
@@ -117,27 +109,22 @@ Gateway::Gateway(Position pos, int team) : Building("Gateway", pos, team, 0, 200
 
 void Gateway::produce(vector<Unit *> &VUnit_)
 {
-    int alea = rand()%4;
-    Position newPos;
-
-    if(alea < 2)
-    {
-        alea = pow(-1, rand()%2);
-        newPos.move(pos_.getX()+alea, pos_.getY());
-    }
-    else
-    {
-        alea = pow(-1, rand()%2);
-        newPos.move(pos_.getX(), pos_.getY()+alea);
-    }
-
-    setWaiting(38);
-    Zealot * newZealot = new Zealot(newPos, team_);
 
     Map* map = Map::get();
-    map->add(newZealot->getName()[0], newPos);
-    VUnit_.push_back(newZealot);
-    cout << "Zealot produit" << endl;
+    Position newPos = map->findPositionAvailable(pos_);
+
+    if(newPos.getX() != -1) //Si la position est bien disponible
+    {
+        setWaiting(38);
+        Zealot * newZealot = new Zealot(newPos, team_);
+
+        Map* map = Map::get();
+        map->add(newZealot->getName()[0], newPos);
+        VUnit_.push_back(newZealot);
+        cout << "Zealot produit" << endl;
+    }
+    else
+        cout << "Production impossible de Zealot" << endl;
 }
 
 Hatchery::Hatchery(Position pos, int team) :  Building("Hatchery", pos, team, 0, 1500)
@@ -147,28 +134,22 @@ Hatchery::Hatchery(Position pos, int team) :  Building("Hatchery", pos, team, 0,
 
 void Hatchery::produce(vector<Unit *> &VUnit_)
 {
-    int alea = rand()%4;
-    Position newPos;
-
-    if(alea < 2)
-    {
-        alea = pow(-1, rand()%2);
-        newPos.move(pos_.getX()+alea, pos_.getY());
-    }
-    else
-    {
-        alea = pow(-1, rand()%2);
-        newPos.move(pos_.getX(), pos_.getY()+alea);
-    }
-
-    setWaiting(24);
-    Ling * newLing1 = new Ling(newPos, team_);
-    //Ling * newLing2 = new Ling(newPos, team_); //TODO: NE PAS METTRE 2 UNITE SUR LA MEME CASE
 
     Map* map = Map::get();
-    map->add(newLing1->getName()[0], newPos);
-    //map->add(newLing2->getName()[0], newPos);
-    VUnit_.push_back(newLing1);
-    //VUnit_.push_back(newLing2);
-    cout << "2 Lings produits" << endl;
+    Position newPos = map->findPositionAvailable(pos_);
+
+    if(newPos.getX() != -1) //Si la position est bien disponible
+    {
+        setWaiting(24);
+        Ling * newLing1 = new Ling(newPos, team_);
+        //Ling * newLing2 = new Ling(newPos, team_); //TODO: NE PAS METTRE 2 UNITE SUR LA MEME CASE
+
+        map->add(newLing1->getName()[0], newPos);
+        //map->add(newLing2->getName()[0], newPos);
+        VUnit_.push_back(newLing1);
+        //VUnit_.push_back(newLing2);
+        cout << "2 Lings produits" << endl;
+    }
+    else
+        cout << "Production de Ling impossible" << endl;
 }

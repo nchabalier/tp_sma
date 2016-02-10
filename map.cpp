@@ -1,4 +1,5 @@
 #include "map.h"
+#include <math.h>
 #include <iostream>
 
 using namespace std;
@@ -57,4 +58,37 @@ bool Map::isOccupied(Position pos) const
 void Map::erase(Position pos)
 {
     map_[pos.getX()][pos.getY()] = ' ';
+}
+
+Position Map::findPositionAvailable(Position posCur) const
+{
+    bool producted = false;
+    int alea = rand()%4;
+    Position newPos(-1,-1);
+    Map* map = Map::get();
+
+    if(alea < 2)
+    {
+        alea = pow(-1, rand()%2);
+        newPos.move(posCur.getX()+alea, posCur.getY());
+        producted = !map->isOccupied(newPos);
+        if(!producted)
+        {
+            newPos.move(posCur.getX()-alea, posCur.getY());
+            producted = !map->isOccupied(newPos);
+        }
+    }
+
+    if(!producted)
+    {
+        alea = pow(-1, rand()%2);
+        newPos.move(posCur.getX(), posCur.getY()+alea);
+        producted = !map->isOccupied(newPos);
+        if(!producted)
+        {
+            newPos.move(posCur.getX(), posCur.getY()-alea);
+            producted = !map->isOccupied(newPos);
+        }
+    }
+    return newPos;
 }

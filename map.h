@@ -30,6 +30,13 @@ public:
     bool isOccupied(Position pos) const;
     void erase(Position pos);
 
+    /**
+     * @brief findPositionAvailable
+     * @param posCur
+     * @return A random Position around the posCur, if it's not possible return position (-1, -1)
+     */
+    Position findPositionAvailable(Position posCur) const;
+
 };
 
 #endif // MAP_H
