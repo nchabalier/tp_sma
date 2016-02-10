@@ -14,7 +14,7 @@ public:
     //virtual ~Building();
     //Building(int i, Position pos, int team);
     Building(string name, Position pos, int team, int waiting, int hitPoints): Agent(name, pos, team, waiting, hitPoints) {}
-    virtual void produce(vector<Unit *> &VUnit_) {}
+    virtual void produce(vector<Unit *> &VUnit_)=0;
 };
 
 
