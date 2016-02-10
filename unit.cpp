@@ -135,13 +135,12 @@ void Unit::moveUnit(Position& pos)
             }
         }
     }
-    if(posToSelec != -1)
+    if(posToSelec != -1 && newPos[posToSelec].getX() >= 0 && newPos[posToSelec].getX() < 20
+                        && newPos[posToSelec].getY() >= 0 && newPos[posToSelec].getY() < 20)
     {
         map->move(this->pos_, newPos[posToSelec]);
         pos_.move(newPos[posToSelec].getX(), newPos[posToSelec].getY()); //TODO : faire passer une Position direcetement
     }
-    else
-        cout << "pas de position" << endl;
 }
 
 void Unit::attackUnit(Unit &unit)

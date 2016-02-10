@@ -84,6 +84,7 @@ Barracks::Barracks(Position pos, int team) : Building("Barracks", pos, team, 0, 
 
 }
 
+//TODO : vérifier que la position n'est pas déja prise
 void Barracks::produce(vector<Unit *> &VUnit_)
 {
     int alea = rand()%4;
