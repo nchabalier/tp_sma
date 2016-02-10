@@ -6,6 +6,7 @@
 #include "position.h"
 using namespace std;
 
+
 class Agent
 {
 protected:
