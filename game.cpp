@@ -1,5 +1,6 @@
 #include "game.h"
 #include "map.h"
+#include <algorithm>
 
 Game::Game()
 {
@@ -44,15 +45,16 @@ Game::Game()
 
 bool Game::play()
 {
+    //Ransomize vector of Building and vector of Unit for equality
+     std::random_shuffle ( VBuilding_.begin(), VBuilding_.end());
+     std::random_shuffle ( VUnit_.begin(), VUnit_.end());
+
     //----------------------Production of Unit------------------------------------
     for(unsigned int i =0; i<VBuilding_.size(); i++)
     {
         if(VBuilding_[i]->isReady())
         {
-            /*Building* b = static_cast<Building *>(&(VBuilding_[i]));
-            VUnit_.push_back(b->produce());*/
             VBuilding_[i]->produce(VUnit_);
-            //VBuilding_[i].setWaiting(5); // New Waiting time before next produce
         }
         else
         {
@@ -153,36 +155,34 @@ void Game::diplayMap() const
 void Game::eraseDeadBuilding()
 {
     vector<Building *>::iterator it = VBuilding_.begin();
-    bool erased = false;
     Map* map = Map::get();
 
-    while(it != VBuilding_.end() && erased == false)
+    while(it != VBuilding_.end())
     {
         if((*it)->isDead())
         {
             map->erase((*it)->getPos());
-            VBuilding_.erase(it);
-            erased = true;
+            it = VBuilding_.erase(it);
         }
-        it++;
+        else
+            it++;
     }
 }
 
 void Game::eraseDeadUnit()
 {
     vector<Unit *>::iterator it = VUnit_.begin();
-    bool erased = false;
     Map* map = Map::get();
 
-    while(it != VUnit_.end() && erased == false)
+    while(it != VUnit_.end())
     {
         if((*it)->isDead())
         {
             map->erase((*it)->getPos());
-            VUnit_.erase(it);
-            //erased = true;
+            it = VUnit_.erase(it);
         }
-        it++;
+        else
+            it++;
     }
 }
 
