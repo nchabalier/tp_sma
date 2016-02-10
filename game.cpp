@@ -6,6 +6,7 @@ Game::Game()
     Map* map = Map::get();
 
     Position pos(1,1);
+
     //Building building1(1, pos, 0);
     Barracks * building1 = new Barracks(pos, 0);
     Position pos2(HEIGHT-2,WIDTH-2);
@@ -24,6 +25,15 @@ Game::Game()
     //Building building4(3, pos4, 1);
     Hatchery * building4 = new Hatchery(pos4, 1);
     map->add(building4->getName()[0], pos4);
+
+    Position posTest(0,1);
+    map->add('T', posTest);
+    posTest.move(1,0);
+    map->add('T', posTest);
+    posTest.move(2,1);
+    map->add('T', posTest);
+    posTest.move(1,2);
+    map->add('T', posTest);
 
     VBuilding_.push_back(building1);
     VBuilding_.push_back(building2);
@@ -57,7 +67,6 @@ bool Game::play()
         if((*it)->isReady())
         {
             (*it)->doAction(VBuilding_, VUnit_);
-            //(*it)->setWaiting(5);
         }
         else
         {

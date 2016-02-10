@@ -136,20 +136,20 @@ void Hatchery::produce(vector<Unit *> &VUnit_)
 {
 
     Map* map = Map::get();
-    Position newPos = map->findPositionAvailable(pos_);
 
-    if(newPos.getX() != -1) //Si la position est bien disponible
+    for(int i = 0; i < 2; i++)
     {
-        setWaiting(24);
-        Ling * newLing1 = new Ling(newPos, team_);
-        //Ling * newLing2 = new Ling(newPos, team_); //TODO: NE PAS METTRE 2 UNITE SUR LA MEME CASE
+        Position newPos = map->findPositionAvailable(pos_);
 
-        map->add(newLing1->getName()[0], newPos);
-        //map->add(newLing2->getName()[0], newPos);
-        VUnit_.push_back(newLing1);
-        //VUnit_.push_back(newLing2);
-        cout << "2 Lings produits" << endl;
-    }
-    else
-        cout << "Production de Ling impossible" << endl;
+        if(newPos.getX() != -1) //Si la position est bien disponible
+        {
+            setWaiting(24);
+            Ling * newLing1 = new Ling(newPos, team_);
+            map->add(newLing1->getName()[0], newPos);
+            VUnit_.push_back(newLing1);
+            cout << "1 Lings produits" << endl;
+        }
+        else
+            cout << "Production de Ling impossible" << endl;
+     }
 }

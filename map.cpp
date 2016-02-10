@@ -90,5 +90,8 @@ Position Map::findPositionAvailable(Position posCur) const
             producted = !map->isOccupied(newPos);
         }
     }
+    if(!producted)
+        newPos.move(-1,-1);
+
     return newPos;
 }
