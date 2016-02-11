@@ -20,7 +20,6 @@ public:
     bool isContinued() {return continue_;}
     void setContinue(bool f) {continue_ = f;}
     bool play();
-    void displayDebug() const;
     void diplayMap() const;
     void eraseDeadBuilding();
     void eraseDeadUnit();

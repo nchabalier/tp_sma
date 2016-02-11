@@ -1,5 +1,6 @@
 #include "game.h"
 #include "map.h"
+#include "iostream"
 #include <algorithm>
 
 Game::Game()
@@ -95,20 +96,6 @@ bool Game::play()
     return isContinued();
 }
 
-void Game::displayDebug() const
-{
-    cout << endl << "Display of Building" << endl << endl;
-    for(auto it : VBuilding_)
-    {
-        it->display();
-    }
-
-    cout << endl << "Display of Unit" << endl << endl;
-    for(auto it : VUnit_)
-    {
-        it->display();
-    }
-}
 
 void Game::diplayMap() const
 {

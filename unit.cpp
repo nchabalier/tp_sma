@@ -2,6 +2,7 @@
 #include <cmath>
 
 #include "map.h"
+#include "iostream"
 
 Unit::Unit()
 {

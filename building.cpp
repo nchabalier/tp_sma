@@ -1,7 +1,7 @@
 #include "building.h"
 #include <cstdlib>
 #include <cmath>
-
+#include "iostream"
 #include "map.h"
 
 Building::Building()
