@@ -41,9 +41,9 @@ Unit::Unit(string name, Position pos, int team)
 }
 */
 
-Marine::Marine(Position pos, int team) : Unit("Marine", pos, team, 0, 45, 9, 4, 5, 6, 8){}
+Marine::Marine(Position pos, int team) : Unit("Marine", pos, team, 0, 45, 9, 4, 3, 5, 8){}
 
-Zealot::Zealot(Position pos, int team) : Unit("Zealot", pos, team, 0, 150, 8, 4, 1, 16,12){}
+Zealot::Zealot(Position pos, int team) : Unit("Zealot", pos, team, 0, 150, 8, 4, 1, 18,12){}
 
 Ling::Ling(Position pos, int team) : Unit("Ling", pos, team,0, 35, 9, 3, 1, 5, 7){}
 

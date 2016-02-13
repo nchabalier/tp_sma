@@ -15,12 +15,12 @@ Game::Game()
     map->add(building1->getName()[0], pos);
 
     //Building building2(2, pos2, 0);
-    Gateway * building2 = new Gateway(pos2, 0);
+    Gateway * building2 = new Gateway(pos2, 1);
     map->add(building2->getName()[0], pos2);
 
     Position pos3(1,WIDTH-2);
     //Building building3(3, pos3, 1);
-    Hatchery * building3 = new Hatchery(pos3, 1);
+    Hatchery * building3 = new Hatchery(pos3, 0);
     map->add(building3->getName()[0], pos3);
 
     Position pos4(HEIGHT-2, 1);
@@ -28,6 +28,7 @@ Game::Game()
     Hatchery * building4 = new Hatchery(pos4, 1);
     map->add(building4->getName()[0], pos4);
 
+    /*
     Position posTest(0,1);
     map->add('T', posTest);
     posTest.move(1,0);
@@ -36,12 +37,47 @@ Game::Game()
     map->add('T', posTest);
     posTest.move(1,2);
     map->add('T', posTest);
+    */
 
     VBuilding_.push_back(building1);
     VBuilding_.push_back(building2);
     VBuilding_.push_back(building3);
     VBuilding_.push_back(building4);
     continue_ = true;
+}
+
+Game::Game(BuildingFactory fac, int teams, int perTeam, char races[16])
+{
+    Map* map = Map::get();
+    Position pos;
+    Building * bat = nullptr;
+    for(int i = 0; i < perTeam; i++)
+    {
+        pos.move(1,1+(2*i));
+        bat = fac.create(races[i*teams], pos, 0);
+        VBuilding_.push_back(bat);
+        map->add(bat->getName()[0], pos);
+
+        pos.move(HEIGHT-1, WIDTH-1-(2*i));
+        bat = fac.create(races[i*teams+1], pos, 1);
+        VBuilding_.push_back(bat);
+        map->add(bat->getName()[0], pos);
+
+        if (teams > 2)
+        {
+            pos.move(1+(2*i), WIDTH-1);
+            bat = fac.create(races[i*teams+2], pos, 2);
+            VBuilding_.push_back(bat);
+            map->add(bat->getName()[0], pos);
+        }
+        if(teams > 3)
+        {
+            pos.move(HEIGHT-1-(2*i), 1);
+            bat = fac.create(races[i*teams+3], pos, 3);
+            VBuilding_.push_back(bat);
+            map->add(bat->getName()[0], pos);
+        }
+    }
 }
 
 bool Game::play()

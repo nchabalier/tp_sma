@@ -42,4 +42,10 @@ public:
     virtual void produce(vector<Unit *> &VUnit_);
 };
 
+class BuildingFactory
+{
+    public :
+    Building * create(char race, Position pos, int team);
+};
+
 #endif // BUILDING_H

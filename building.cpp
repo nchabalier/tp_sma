@@ -91,7 +91,7 @@ void Barracks::produce(vector<Unit *> &VUnit_)
 
     if(newPos.getX() != -1) //Si la position est bien disponible
     {
-        setWaiting(25);
+        setWaiting(125);
         Marine * newMarine = new Marine(newPos, team_);
 
         map->add(newMarine->getName()[0], newPos);
@@ -115,7 +115,7 @@ void Gateway::produce(vector<Unit *> &VUnit_)
 
     if(newPos.getX() != -1) //Si la position est bien disponible
     {
-        setWaiting(38);
+        setWaiting(190);
         Zealot * newZealot = new Zealot(newPos, team_);
 
         Map* map = Map::get();
@@ -143,13 +143,31 @@ void Hatchery::produce(vector<Unit *> &VUnit_)
 
         if(newPos.getX() != -1) //Si la position est bien disponible
         {
-            setWaiting(24);
+            setWaiting(120);
             Ling * newLing1 = new Ling(newPos, team_);
             map->add(newLing1->getName()[0], newPos);
             VUnit_.push_back(newLing1);
-            cout << "1 Lings produits" << endl;
+            cout << "1 Ling produit" << endl;
         }
         else
             cout << "Production de Ling impossible" << endl;
      }
+}
+
+Building * BuildingFactory::create(char race, Position pos, int team)
+{
+    Building * bat = nullptr;
+    if (race == 'T' || race == 't')
+    {
+        bat = new Barracks(pos, team);
+    }
+    if (race == 'P' || race == 'p')
+    {
+        bat = new Gateway(pos, team);
+    }
+    if (race == 'Z' || race == 'z')
+    {
+        bat = new Hatchery(pos, team);
+    }
+    return bat;
 }

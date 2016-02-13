@@ -11,15 +11,37 @@ using namespace std;
 int main()
 {
     int i=0;
+    int teams = 4;
+    int perTeam = 3;
+    char races[16];
     srand(time(NULL));
 
 
-    Game game;
+    cout << "How many teams? (2, 3 or 4)" << endl;
+    //cin >> teams;
+    cout << "How many players per team? (between 1 and 4)" << endl;
+    //cin >> perTeam;
+
+    for(int p = 0; p < perTeam; p++)
+    {
+        for(int t = 0; t < teams; t++)
+        {
+
+            cout << "Player " << p << " of team" << t << "? (T, P or Z)" << endl;
+            //cin >> races[p*teams + t];
+
+            races[p*teams+t] = 'T';
+        }
+    }
+
+
+    BuildingFactory fac;
+    Game game(fac, teams, perTeam, races);
     game.play();
     while(game.play())
     {
         game.diplayMap();
-        Sleep(10);
+        Sleep(5);
         cout << i << endl;
         i++;
     }

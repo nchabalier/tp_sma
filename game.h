@@ -17,6 +17,7 @@ private:
     bool continue_;
 public:
     Game();
+    Game(BuildingFactory fac, int teams, int perTeam, char races[16]);
     bool isContinued() {return continue_;}
     void setContinue(bool f) {continue_ = f;}
     bool play();
