@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "game.h"
 #include "map.h"
 #include "iostream"

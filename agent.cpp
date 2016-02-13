@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "agent.h"
 
 int Agent::compteur_ = 0;

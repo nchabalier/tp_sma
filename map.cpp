@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "map.h"
 #include <math.h>
 #include <iostream>
