@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include <iostream>
 #include "building.h"
 #include "unit.h"
@@ -8,7 +10,7 @@
 
 using namespace std;
 
-int main()
+int _tmain(int argc, _TCHAR* argv[])
 {
     int i=0;
     int teams = 4;
@@ -21,6 +23,8 @@ int main()
     //cin >> teams;
     cout << "How many players per team? (between 1 and 4)" << endl;
     //cin >> perTeam;
+
+	Sleep(20000);
 
     for(int p = 0; p < perTeam; p++)
     {

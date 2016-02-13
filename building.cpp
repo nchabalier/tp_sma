@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "building.h"
 #include <cstdlib>
 #include <cmath>
@@ -96,10 +97,9 @@ void Barracks::produce(vector<Unit *> &VUnit_)
 
         map->add(newMarine->getName()[0], newPos);
         VUnit_.push_back(newMarine);
-        cout << "Marine produit" << endl;
+        //cout << "Marine produit" << endl;
     }
-    else
-        cout << "Production impossible de Marine" << endl;
+        //cout << "Production impossible de Marine" << endl;
 }
 
 Gateway::Gateway(Position pos, int team) : Building("Gateway", pos, team, 0, 2000)
@@ -121,10 +121,9 @@ void Gateway::produce(vector<Unit *> &VUnit_)
         Map* map = Map::get();
         map->add(newZealot->getName()[0], newPos);
         VUnit_.push_back(newZealot);
-        cout << "Zealot produit" << endl;
+        //cout << "Zealot produit" << endl;
     }
-    else
-        cout << "Production impossible de Zealot" << endl;
+        //cout << "Production impossible de Zealot" << endl;
 }
 
 Hatchery::Hatchery(Position pos, int team) :  Building("Hatchery", pos, team, 0, 1500)
@@ -147,10 +146,9 @@ void Hatchery::produce(vector<Unit *> &VUnit_)
             Ling * newLing1 = new Ling(newPos, team_);
             map->add(newLing1->getName()[0], newPos);
             VUnit_.push_back(newLing1);
-            cout << "1 Ling produit" << endl;
+            //cout << "1 Ling produit" << endl;
         }
-        else
-            cout << "Production de Ling impossible" << endl;
+            //cout << "Production de Ling impossible" << endl;
      }
 }
 

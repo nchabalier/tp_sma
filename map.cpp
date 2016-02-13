@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "map.h"
 #include <math.h>
 #include <iostream>
@@ -8,7 +9,7 @@ Map *Map::singleton = nullptr;
 
 Map::Map()
 {
-    cout << "Construction Map" << endl;
+    //cout << "Construction Map" << endl;
     for(int i = 0; i < 20; i++)
     {
         for(int j = 0; j < 20; j++)
@@ -20,6 +21,7 @@ Map::Map()
 
 void Map::display() const
 {
+	cout << "----------------------" << endl;
     for(int i = 0; i<20; i++)
     {
         cout << '|';
@@ -29,6 +31,7 @@ void Map::display() const
         }
         cout << '|' << endl;
     }
+	cout << "----------------------" << endl;
 }
 
 void Map::add(char letter, int x, int y)

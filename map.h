@@ -1,5 +1,4 @@
-#ifndef MAP_H
-#define MAP_H
+#pragma once
 
 #include "position.h"
 
@@ -38,5 +37,3 @@ public:
     Position findPositionAvailable(Position posCur) const;
 
 };
-
-#endif // MAP_H

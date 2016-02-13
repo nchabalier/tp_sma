@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "unit.h"
 #include <cmath>
 
@@ -73,9 +74,7 @@ void Unit::doAction(vector<Building *> &VBuilding, vector<Unit *> &VUnit)
 
     if(bestDistance <= range_)
     {
-        cout << "A l'attaque" << endl;
-        //attackUnit(*targetIterator);
-        //(**targetIterator2)->takeDamage(attackDamage_);
+        //cout << "A l'attaque" << endl;
         closestTarget->takeDamage(attackDamage_);
         this->movingRecovery();
 
@@ -119,7 +118,7 @@ void Unit::moveUnit(Position& pos)
         if(!map->isOccupied(newPos[0]) && !map->isOccupied(newPos[1]))
         {
             //random select
-            cout << "select alea" << endl;
+            //cout << "select alea" << endl;
             posToSelec = alea;
         }
         else
@@ -127,12 +126,10 @@ void Unit::moveUnit(Position& pos)
             if (!map->isOccupied(newPos[0])) //Select vertical movement
             {
                 posToSelec = 0;
-                cout << "select 0" << endl;
             }
             else //Select horizontal movement
             {
                 posToSelec = 1;
-                cout << "select 1" << endl;
             }
         }
     }
@@ -169,7 +166,7 @@ Agent* Unit::closestAgent(double& bestDistance, Position &posTarget, vector<Unit
     }
     else
     {
-        cout << "Batiment en vue" << endl;
+        //cout << "Batiment en vue" << endl;
     }
     return closestA;
 }

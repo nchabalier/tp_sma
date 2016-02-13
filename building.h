@@ -1,5 +1,4 @@
-#ifndef BUILDING_H
-#define BUILDING_H
+#pragma once
 
 #include "agent.h"
 #include "unit.h"
@@ -48,4 +47,3 @@ class BuildingFactory
     Building * create(char race, Position pos, int team);
 };
 
-#endif // BUILDING_H

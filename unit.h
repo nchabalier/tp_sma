@@ -1,5 +1,4 @@
-#ifndef UNIT_H
-#define UNIT_H
+#pragma once
 
 #include "agent.h"
 #include "building.h"
@@ -73,5 +72,3 @@ public:
     Ling() {}
     Ling(Position pos, int team);
 };
-
-#endif // UNIT_H

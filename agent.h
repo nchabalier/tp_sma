@@ -1,5 +1,4 @@
-#ifndef AGENT_H
-#define AGENT_H
+#pragma once
 
 #include <string>
 
@@ -117,6 +116,3 @@ public:
 
 
 };
-
-
-#endif // AGENT_H

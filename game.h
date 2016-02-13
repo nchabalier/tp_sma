@@ -1,5 +1,4 @@
-#ifndef GAME_H
-#define GAME_H
+#pragma once
 
 #include <vector>
 #include "agent.h"
@@ -29,4 +28,3 @@ public:
     bool isTeamAlive();
 };
 
-#endif // GAME_H

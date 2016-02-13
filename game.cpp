@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "game.h"
 #include "map.h"
 #include "iostream"
@@ -116,7 +117,7 @@ bool Game::play()
 
     for(unsigned int i =0; i<VBuilding_.size(); i++)
     {
-        cout <<  VBuilding_[i]->getName() << " : " << VBuilding_[i]->getHitPoints() << endl;
+        //cout <<  VBuilding_[i]->getName() << " : " << VBuilding_[i]->getHitPoints() << endl;
     }
 
     //Erase Unit and Building who have hitPoints < 0
@@ -126,7 +127,7 @@ bool Game::play()
     //Winner
     if(!isTeamAlive())
     {
-       cout << "Team " << VBuilding_[0]->getTeam() << " gagne !" << endl;
+       //cout << "Team " << VBuilding_[0]->getTeam() << " gagne !" << endl;
        setContinue(false);
     }
     return isContinued();

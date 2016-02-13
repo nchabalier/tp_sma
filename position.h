@@ -1,5 +1,4 @@
-#ifndef POSITION_H
-#define POSITION_H
+#pragma once
 
 #include <vector>
 
@@ -62,5 +61,3 @@ class Position
      */
     void move(int x, int y) { x_ = x; y_ = y;}
 };
-
-#endif // POSITION_H
