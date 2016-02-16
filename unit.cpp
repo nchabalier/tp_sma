@@ -3,6 +3,7 @@
 
 #include "map.h"
 #include "iostream"
+#include "gen.h"
 
 Unit::Unit()
 {
@@ -90,7 +91,7 @@ void Unit::doAction(vector<Building *> &VBuilding, vector<Unit *> &VUnit)
 
 void Unit::moveUnit(Position& pos)
 {
-    int alea = rand()%2;
+    int alea = Gen()(INT_MAX)%2;
     int posToSelec = -1;
     Position newPos[2];
 

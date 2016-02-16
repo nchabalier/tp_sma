@@ -5,8 +5,11 @@
 #include "game.h"
 #include <ctime>
 #include <windows.h> //For Sleep()
+#include "gen.h"
 
 using namespace std;
+
+int Gen::seed_ = 1234;
 
 int main()
 {
@@ -14,7 +17,8 @@ int main()
     int teams = 4;
     int perTeam = 3;
     char races[16];
-    srand(time(NULL));
+
+    //Initialisation du générateur de nombre aléatoire
 
 
     cout << "How many teams? (2, 3 or 4)" << endl;

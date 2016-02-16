@@ -2,6 +2,8 @@
 #include "map.h"
 #include "iostream"
 #include <algorithm>
+//#include "randomgenerator.h"
+#include "gen.h"
 
 Game::Game()
 {
@@ -49,6 +51,7 @@ Game::Game()
 Game::Game(BuildingFactory fac, int teams, int perTeam, char races[16])
 {
     Map* map = Map::get();
+
     Position pos;
     Building * bat = nullptr;
     for(int i = 0; i < perTeam; i++)
@@ -82,9 +85,11 @@ Game::Game(BuildingFactory fac, int teams, int perTeam, char races[16])
 
 bool Game::play()
 {
+     //RandomGenerator* randGen = RandomGenerator::get();
+    //Gen* gen = Gen::get();
     //Ransomize vector of Building and vector of Unit for equality
-     std::random_shuffle ( VBuilding_.begin(), VBuilding_.end());
-     std::random_shuffle ( VUnit_.begin(), VUnit_.end());
+     std::random_shuffle ( VBuilding_.begin(), VBuilding_.end(), Gen());
+     std::random_shuffle ( VUnit_.begin(), VUnit_.end(), Gen());
 
     //----------------------Production of Unit------------------------------------
     for(unsigned int i =0; i<VBuilding_.size(); i++)

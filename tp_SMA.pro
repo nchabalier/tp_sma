@@ -5,7 +5,8 @@ SOURCES += \
     unit.cpp \
     game.cpp \
     position.cpp \
-    map.cpp
+    map.cpp \
+    gen.cpp
 
 HEADERS += \
     agent.h \
@@ -13,6 +14,7 @@ HEADERS += \
     unit.h \
     game.h \
     position.h \
-    map.h
+    map.h \
+    gen.h
 
 CONFIG += c++11

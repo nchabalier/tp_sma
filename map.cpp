@@ -1,6 +1,7 @@
 #include "map.h"
 #include <math.h>
 #include <iostream>
+#include "gen.h"
 
 using namespace std;
 
@@ -65,13 +66,13 @@ void Map::erase(Position pos)
 Position Map::findPositionAvailable(Position posCur) const
 {
     bool producted = false;
-    int alea = rand()%4;
+    int alea = Gen()(INT_MAX)%4;
     Position newPos(-1,-1);
     Map* map = Map::get();
 
     if(alea < 2)
     {
-        alea = pow(-1, rand()%2);
+        alea = pow(-1, Gen()(INT_MAX)%2);
         newPos.move(posCur.getX()+alea, posCur.getY());
         producted = !map->isOccupied(newPos);
         if(!producted)
@@ -83,7 +84,7 @@ Position Map::findPositionAvailable(Position posCur) const
 
     if(!producted)
     {
-        alea = pow(-1, rand()%2);
+        alea = pow(-1, Gen()(INT_MAX)%2);
         newPos.move(posCur.getX(), posCur.getY()+alea);
         producted = !map->isOccupied(newPos);
         if(!producted)
