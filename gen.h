@@ -46,17 +46,9 @@ public:
 
 #endif // GEN_H
 
+//Algorithme de l'ancien générateur
+
 /*
-#ifndef GEN_H
-#define GEN_H
-
-
-#include <algorithm>
-#include <time.h>
-
-#include "iostream"
-
-using namespace std;
 
 class Gen
 {
