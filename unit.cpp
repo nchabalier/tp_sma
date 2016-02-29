@@ -91,7 +91,8 @@ void Unit::doAction(vector<Building *> &VBuilding, vector<Unit *> &VUnit)
 
 void Unit::moveUnit(Position& pos)
 {
-    int alea = Gen()(INT_MAX)%2;
+    int alea = Gen()(32767);
+    alea = alea % 2;
     int posToSelec = -1;
     Position newPos[2];
 
@@ -162,7 +163,10 @@ Agent* Unit::closestAgent(double& bestDistance, Position &posTarget, vector<Unit
     {
         Agent* closestTemp = (Agent *)closestUnit(bestDistance, posTarget, VUnit);
         if(closestTemp != nullptr)
+        {
             closestA = closestTemp;
+            //cout << "Unite en vue" << endl;
+        }
     }
     else
     {
@@ -190,6 +194,8 @@ Building* Unit::closestBuilding(double& bestDistance, Position &posTarget, vecto
              }
         }
     }
+
+
     return closestB;
 }
 

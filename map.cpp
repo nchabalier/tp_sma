@@ -52,10 +52,14 @@ void Map::move(Position posPrec, Position posSuiv)
 
 bool Map::isOccupied(Position pos) const
 {
-    if(map_[pos.getX()][pos.getY()] == ' ')
-        return false;
-    else
-        return true;
+    bool occupied = true;
+    if(pos.getX()>=0 && pos.getX()<20 && pos.getY()>=0 && pos.getY()<20)
+    {
+        if(map_[pos.getX()][pos.getY()] == ' ')
+            occupied = false;
+    }
+
+    return occupied;
 }
 
 void Map::erase(Position pos)
@@ -66,13 +70,13 @@ void Map::erase(Position pos)
 Position Map::findPositionAvailable(Position posCur) const
 {
     bool producted = false;
-    int alea = Gen()(INT_MAX)%4;
+    int alea = Gen()(32767)%4;
     Position newPos(-1,-1);
     Map* map = Map::get();
 
     if(alea < 2)
     {
-        alea = pow(-1, Gen()(INT_MAX)%2);
+        alea = pow(-1, Gen()(32767)%2);
         newPos.move(posCur.getX()+alea, posCur.getY());
         producted = !map->isOccupied(newPos);
         if(!producted)
@@ -84,7 +88,7 @@ Position Map::findPositionAvailable(Position posCur) const
 
     if(!producted)
     {
-        alea = pow(-1, Gen()(INT_MAX)%2);
+        alea = pow(-1, Gen()(32767)%2);
         newPos.move(posCur.getX(), posCur.getY()+alea);
         producted = !map->isOccupied(newPos);
         if(!producted)

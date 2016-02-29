@@ -32,6 +32,11 @@ public:
      * @param VUnit_
      */
     virtual void produce(vector<Unit *> &VUnit_)=0;
+
+    /**
+     * @brief ~Building Virtual destructor of Building
+     */
+    virtual ~Building() {}
 };
 
 /**

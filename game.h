@@ -95,5 +95,7 @@ public:
      * @return false is there is only one team alive
      */
     bool isTeamAlive();
+
+    void clean();
 };
 

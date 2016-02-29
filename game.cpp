@@ -131,8 +131,9 @@ bool Game::play()
     //Winner
     if(!isTeamAlive())
     {
-       //cout << "Team " << VBuilding_[0]->getTeam() << " gagne !" << endl;
+       cout << "Team " << VBuilding_[0]->getTeam() << " gagne !" << endl;
        setContinue(false);
+       clean();
     }
     return isContinued();
 }
@@ -189,6 +190,7 @@ void Game::eraseDeadBuilding()
     {
         if((*it)->isDead())
         {
+            delete *it;
             map->erase((*it)->getPos());
             it = VBuilding_.erase(it);
         }
@@ -206,6 +208,7 @@ void Game::eraseDeadUnit()
     {
         if((*it)->isDead())
         {
+            delete *it;
             map->erase((*it)->getPos());
             it = VUnit_.erase(it);
         }
@@ -246,4 +249,14 @@ bool Game::isTeamAlive()
         return false;
     else
         return true;
+}
+
+void Game::clean()
+{
+    VBuilding_.clear();
+
+    for (auto it = VUnit_.begin(); it != VUnit_.end(); ++it)
+        delete *it;
+    VUnit_.clear();
+
 }

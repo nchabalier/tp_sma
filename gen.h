@@ -39,7 +39,7 @@ public:
     size_t operator()(size_t n)
     {
         std::uniform_int_distribution<size_t> d(0, n ? n-1 : 0);
-        seed_ = d(g);
+        seed_ = (d(g) + seed_) % 32767;
         return d(g);
     }
 };
