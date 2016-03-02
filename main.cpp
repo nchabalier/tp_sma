@@ -20,13 +20,22 @@ int main()
     int teams = 2;
     int perTeam = 1;
     char races[16];
+    char race;
 
     cout << "How many teams? (2, 3 or 4)" << endl;
     cin >> teams;
-    teams = 2;
+    while (teams < 2 || teams > 4)
+    {
+        cout << "Must be between 2 and 4, please enter a valid number" << endl;
+        cin >> teams;
+    }
     cout << "How many players per team? (between 1 and 4)" << endl;
     cin >> perTeam;
-    perTeam = 1;
+    while (perTeam < 1 || perTeam > 4)
+    {
+        cout << "Must be between 1 and 4, please enter a valid number" << endl;
+        cin >> perTeam;
+    }
 
 
     for(int p = 0; p < perTeam; p++)
@@ -35,12 +44,23 @@ int main()
         {
 
             cout << "Player " << p << " of team " << t << "? (T, P or Z)" << endl;
-            cin >> races[p*teams + t];
+            cin >> race;
+            while (race != 't' && race != 'T' && race != 'p' && race != 'P' && race !='Z' && race !='z')
+            {
+                cout << "Invalid race, please enter a valid value (T/t, P/p, Z/z)" << endl;
+                cin >> race;
+            }
+            races[p*teams + t] = race;
         }
     }
 
     cout << "Enter a seed (0 will randomize a seed)" << endl;
     cin >> seed;
+    while (seed < 0 || seed > 32767)
+    {
+        cout << "Please enter a value between 0 and 32767" << endl;
+        cin >> seed;
+    }
     if (seed != 0)
     {
 	    Gen::setSeed(seed);
@@ -56,10 +76,10 @@ int main()
     while(game.play())
     {
         game.diplayMap();
-        usleep(5000);
-        cout << i << endl;
+        usleep(10000);
         i++;
     }
+    cout << "This game has lasted " << i << " turns" << endl;
 
     return 0;
 }

@@ -10,7 +10,7 @@
 #CPP_SRCS = main.cpp
 CPP_SRCS = $(wildcard *.cpp)
 CPP_OBJS = $(patsubst %.cpp, %.o, $(CPP_SRCS))
-EXEC = tp4-5
+EXEC = simulation
 
 
 # ----------------------------------------------------------
