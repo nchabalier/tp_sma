@@ -14,19 +14,18 @@ int Gen::seed_ = 5489; //Default seed in Mersenne Twister
 
 int main()
 {
+
+    int seed = 0;
     int i=0;
     int teams = 2;
     int perTeam = 1;
     char races[16];
 
-    //Initialisation du générateur de nombre aléatoire
-
-
     cout << "How many teams? (2, 3 or 4)" << endl;
-    //cin >> teams;
+    cin >> teams;
     teams = 2;
     cout << "How many players per team? (between 1 and 4)" << endl;
-    //cin >> perTeam;
+    cin >> perTeam;
     perTeam = 1;
 
 
@@ -36,13 +35,20 @@ int main()
         {
 
             cout << "Player " << p << " of team " << t << "? (T, P or Z)" << endl;
-            //cin >> races[p*teams + t];
-            //races[p*teams + t] = 'T';
-            //races[p*teams+t] = 'T';
+            cin >> races[p*teams + t];
         }
     }
-    races[0] = 'T';
-    races[1] = 'P';
+
+    cout << "Enter a seed (0 will randomize a seed)" << endl;
+    cin >> seed;
+    if (seed != 0)
+    {
+	    Gen::setSeed(seed);
+    }
+    else 
+    {
+	    Gen::setSeed((int)time(NULL));
+    }
 
     BuildingFactory fac;
     Game game(fac, teams, perTeam, races);

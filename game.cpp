@@ -61,21 +61,21 @@ Game::Game(BuildingFactory fac, int teams, int perTeam, char races[16])
         VBuilding_.push_back(bat);
         map->add(bat->getName()[0], pos);
 
-        pos.move(HEIGHT-1, WIDTH-1-(2*i));
+        pos.move(HEIGHT-2, WIDTH-2-(2*i));
         bat = fac.create(races[i*teams+1], pos, 1);
         VBuilding_.push_back(bat);
         map->add(bat->getName()[0], pos);
 
         if (teams > 2)
         {
-            pos.move(1+(2*i), WIDTH-1);
+            pos.move(1+(2*i), WIDTH-2);
             bat = fac.create(races[i*teams+2], pos, 2);
             VBuilding_.push_back(bat);
             map->add(bat->getName()[0], pos);
         }
         if(teams > 3)
         {
-            pos.move(HEIGHT-1-(2*i), 1);
+            pos.move(HEIGHT-2-(2*i), 1);
             bat = fac.create(races[i*teams+3], pos, 3);
             VBuilding_.push_back(bat);
             map->add(bat->getName()[0], pos);

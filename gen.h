@@ -42,6 +42,12 @@ public:
         seed_ = (d(g) + seed_) % 32767;
         return d(g);
     }
+    
+    static void setSeed(int newseed)
+    {
+        seed_ = newseed;
+    }
+
 };
 
 #endif // GEN_H
