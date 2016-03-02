@@ -6,27 +6,27 @@
 
 
 /**
- * @brief The Agent class is an abstract class use by Unit and Building.
+ * @brief The Agent class is an abstract class used by Unit and Building.
  */
 class Agent
 {
 protected:
-    static int compteur_; ///< Number of instance created.
+    static int compteur_; ///< Number of instances created.
     int id_;              ///< Id of Agent
     string name_;         ///< Name of Agent
     Position pos_;        ///< Position of Agent
     int team_;            ///< Team of Agent (0, 1, 2 or 3)
-    int waiting_;         ///< Time before Agent can do an action (move, attack or product)
+    int waiting_;         ///< Time before Agent can do an action (move, attack or produce)
     int hitPoints_;       ///< Hit points of Agent
 
 public:
     /**
-     * @brief Agent Constructor by default of Agent
+     * @brief Agent Default constructor of Agent
      */
     Agent();
 
     /**
-     * @brief Agent Constructor of the Agent
+     * @brief Agent Constructor of Agent
      * @param name Name of Agent
      * @param pos Position of Agent
      * @param team Team of Agent
@@ -37,20 +37,20 @@ public:
 
     //Getter
     /**
-     * @brief getName Return name of Agent
+     * @brief getName Returns the name of Agent
      * @return name of Agent
      */
     string getName() const {return name_;}
 
     /**
-     * @brief getPosX Return the position X of Agent
-     * @return position X of Agent
+     * @brief getPosX Return the X position of Agent
+     * @return X position of Agent
      */
     int getPosX() const {return pos_.getX();}
 
     /**
-     * @brief getPosY Return the position Y of Agent
-     * @return position Y of Agent
+     * @brief getPosY Return the Y position of Agent
+     * @return Y position of Agent
      */
     int getPosY() const {return pos_.getY();}
 
@@ -79,8 +79,8 @@ public:
     int getHitPoints() const {return hitPoints_;}
 
     /**
-     * @brief getCompteur Return number of instance of Agent
-     * @return of instance of Agent
+     * @brief getCompteur Return number of instances of Agent
+     * @return instances of Agent
      */
     static int getCompteur() {return compteur_;}
 
@@ -97,13 +97,13 @@ public:
     void wait() {waiting_--;}
 
     /**
-     * @brief setWaiting Set the new waiting time before do an action
+     * @brief setWaiting Set the new waiting time before doing another action
      * @param waiting New waiting time
      */
     void setWaiting(int waiting) {waiting_ = waiting;}
 
     /**
-     * @brief isDead Test if the Agent is alive
+     * @brief isDead Tests if the Agent is dead or alive
      * @return true if life of Agent is under 0
      */
     bool isDead() const {return hitPoints_ <= 0;}

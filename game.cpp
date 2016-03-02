@@ -112,7 +112,7 @@ bool Game::play()
     //Winner
     if(!isTeamAlive())
     {
-       cout << "Team " << VBuilding_[0]->getTeam() << " gagne !" << endl;
+       cout << "Team " << VBuilding_[0]->getTeam() << " wins !" << endl;
        setContinue(false);
        clean();
     }
@@ -122,44 +122,8 @@ bool Game::play()
 
 void Game::diplayMap() const
 {
-//    cout << endl << "Map display" << endl << endl;
-//    char map[HEIGHT][WIDTH] = {0};
-
-//    //Initialization
-//    for(int i = 0; i<HEIGHT; i++)
-//    {
-//        for(int j = 0; j<WIDTH; j++)
-//        {
-//            map[i][j] = ' ';
-//        }
-//    }
-
-
-//    //Building display
-//    for(auto it : VBuilding_)
-//    {
-//        map[it->getPosX()][it->getPosY()] = it->getName()[0];
-//    }
-
-//    //Unit display
-//    for(auto it : VUnit_)
-//    {
-//        map[it->getPosX()][it->getPosY()] = it->getName()[0];
-//    }
-
-//    //Map display
-//    for(int i = 0; i<HEIGHT; i++)
-//    {
-//        cout << '|';
-//        for(int j = 0; j<WIDTH; j++)
-//        {
-//            cout << map[i][j];
-//        }
-//        cout << '|' << endl;
-//    }
     Map* test_map = Map::get();
     test_map->display();
-
 }
 
 void Game::eraseDeadBuilding()

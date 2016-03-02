@@ -7,13 +7,13 @@
 class Unit;
 
 /**
- * @brief The Building class is the class who created Unit
+ * @brief The Building class is the class who creates Units
  */
 class Building : public Agent
 {
 public:
     /**
-     * @brief Building Constructor by Default of Building
+     * @brief Building Default constructor of Building
      */
     Building();
 
@@ -29,7 +29,7 @@ public:
 
     /**
      * @brief produce Virtual method redefined in the factory
-     * @param VUnit_
+     * @param VUnit_ Unit vector in which the new Unit should be pushed
      */
     virtual void produce(vector<Unit *> &VUnit_)=0;
 
@@ -40,18 +40,18 @@ public:
 };
 
 /**
- * @brief The Barracks class is the building of race Marine
+ * @brief The Barracks class is the building of the Terran race
  */
 class Barracks : public Building
 {
 public:
     /**
-     * @brief Barracks Constructor by default of a Barracks Building
+     * @brief Barracks Default constructor of a Barracks building
      */
     Barracks() {}
 
     /**
-     * @brief Barracks Constructor of a Barracks Building
+     * @brief Barracks Constructor of a Barracks building
      * @param pos Position of the Barracks
      * @param team Team of the Barracks
      */
@@ -61,18 +61,18 @@ public:
 };
 
 /**
- * @brief The Gateway class is the building of race Zealot
+ * @brief The Gateway class is the building of the Protoss race
  */
 class Gateway : public Building
 {
 public:
     /**
-     * @brief Gateway Constructor by default of a Gateway Building
+     * @brief Gateway Default constructor of a Gateway building
      */
     Gateway() {}
 
     /**
-     * @brief Gateway Constructor of a Gateway Building
+     * @brief Gateway Constructor of a Gateway building
      * @param pos Position of the Gateway
      * @param team Team of the Gateway
      */
@@ -81,18 +81,18 @@ public:
 };
 
 /**
- * @brief The Hatchery class is the building of race Ling
+ * @brief The Hatchery class is the building of the Zerg race
  */
 class Hatchery : public Building
 {
 public:
     /**
-     * @brief Hatchery Constructor by default of a Hatchery Building
+     * @brief Hatchery Default constructor of a Hatchery building
      */
     Hatchery() {}
 
     /**
-     * @brief Hatchery Constructor of a Hatchery Building
+     * @brief Hatchery Constructor of a Hatchery building
      * @param pos Position of the Buidling
      * @param team Team of the Building
      */
@@ -101,7 +101,7 @@ public:
 };
 
 /**
- * @brief The BuildingFactory class create 3 differents type of Building (Barracks, Hatchery, Gateway)
+ * @brief The BuildingFactory class can create 3 differents types of Building (Barracks, Hatchery, Gateway)
  */
 class BuildingFactory
 {
@@ -111,7 +111,7 @@ public:
      * @param race First character of the building's race
      * @param pos Position of the Building
      * @param team Team of the Building
-     * @return a pointeur of Building
+     * @return a pointer of Building
      */
     Building * create(char race, Position pos, int team);
 };

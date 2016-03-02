@@ -15,12 +15,12 @@ class Game
 {
 private:
     /**
-     * @brief VBuilding_ is a vector of all building created
+     * @brief VBuilding_ is a vector containing all the live Buildings
      */
     vector<Building *> VBuilding_;
 
     /**
-     * @brief VUnit_ is a vector of all unit created
+     * @brief VUnit_ is a vector containing all the live Units
      */
     vector<Unit *> VUnit_;
 
@@ -30,34 +30,34 @@ private:
     bool continue_;
 public:
     /**
-     * @brief Game Constructor by default of the class Game
+     * @brief Game Default constructor of the class Game
      */
     Game();
 
     /**
      * @brief Game Constructor of the class Game
-     * @param fac Factory of Building
+     * @param fac Building Factory
      * @param teams Number of teams
      * @param perTeam Number of Building per team
-     * @param races Name of races
+     * @param races Table containing the first letter of the races in the game
      */
     Game(BuildingFactory fac, int teams, int perTeam, char races[16]);
 
     /**
      * @brief isContinued return a boolean
-     * @return return true if game continue and false if game is finished
+     * @return return true if the game continues and false if the game is finished
      */
     bool isContinued() {return continue_;}
 
     /**
      * @brief setContinue Set the new value of continue_
-     * @param f the new boolean
+     * @param f the new boolean value
      */
     void setContinue(bool f) {continue_ = f;}
 
     /**
-     * @brief play
-     * @return
+     * @brief play plays the game
+     * @return boolean value of continue_
      */
     bool play();
 
@@ -67,26 +67,26 @@ public:
     void diplayMap() const;
 
     /**
-     * @brief eraseDeadBuilding Erase all buildings which have hitPoints under 0
+     * @brief eraseDeadBuilding Erase all buildings which have hitPoints under 0 from the vector
      */
     void eraseDeadBuilding();
 
     /**
-     * @brief eraseDeadUnit Erase all units which have hitPoints under 0
+     * @brief eraseDeadUnit Erase all units which have hitPoints under 0 from the vector
      */
     void eraseDeadUnit();
 
     /**
-     * @brief emptyTeamBuilding Verify if there is no Building of the team
+     * @brief emptyTeamBuilding Verify if there is no Building left in the team
      * @param team to verify
-     * @return boolean true if there is no Building of this team
+     * @return boolean true if there is no Building for this team
      */
     bool emptyTeamBuilding(int team) const; //true if empty
 
     /**
-     * @brief emptyTeamUnit Verify is ther is no Unit of the team
+     * @brief emptyTeamUnit Verify is there is no Unit left in the team
      * @param team to verify
-     * @return boolean true if ther is no Unit of this team
+     * @return boolean true if ther is no Unit for this team
      */
     bool emptyTeamUnit(int team) const; //true if empty
 

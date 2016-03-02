@@ -96,7 +96,7 @@ void Unit::moveUnit(Position& pos)
                         && newPos[posToSelec].getY() >= 0 && newPos[posToSelec].getY() < 20)
     {
         map->move(this->pos_, newPos[posToSelec]);
-        pos_.move(newPos[posToSelec].getX(), newPos[posToSelec].getY()); //TODO : faire passer une Position direcetement
+        pos_.move(newPos[posToSelec].getX(), newPos[posToSelec].getY());
     }
 }
 

@@ -3,39 +3,38 @@
 #include "position.h"
 
 /**
- * @brief The Map class Class of the map
+ * @brief The Map class holds the map
  */
 class Map
 {
 private:
     /**
-     * @brief singleton There is only one singleton allowed
+     * @brief singleton There is at most only one instanciated Map at all times
      */
     static Map* singleton;
 
     /**
      * @brief Map private constructor
      */
-    Map(); // constructeur privé
+    Map();
 
-    //Empecher la copie
     /**
-     * @brief Map Definied here to forbiden copy of the map
+     * @brief Map Definied here to forbid copy of the map
      */
     Map(const Map&);
     /**
-     * @brief operator = Definied here to forbiden copy of the map
+     * @brief operator = Definied here to forbid copy of the map
      */
     void operator=(const Map&);
 
     /**
-     * @brief map_ Contain all first character of Unit and Building to display
+     * @brief map_ Contain every first character of the Units and Buildings to display
      */
     char map_[20][20];
 
 public:
     /**
-     * @brief get if the map doesn't exist yet, this method create a Map else return predifinied Map
+     * @brief get if the map doesn't exist yet, this method creates a Map else return predifined Map
      * @return the only one Map
      */
     static Map *get()
@@ -52,15 +51,15 @@ public:
 
     /**
      * @brief add a new character in the map (creation of new Building or Unit)
-     * @param letter First character of the object to add
-     * @param x Position X of object to add
-     * @param y Position Y of object to add
+     * @param letter First letter of the object to add
+     * @param x X Position of object to add
+     * @param y Y Position of object to add
      */
     void add(char letter, int x, int y);
 
     /**
      * @brief add a new character in the map (creation of new Building or Unit)
-     * @param letter Firsty character of the object to add
+     * @param letter First letter of the object to add
      * @param pos Position of object to add
      */
     void add(char letter, Position pos);
@@ -68,7 +67,7 @@ public:
     /**
      * @brief move Change the position of an existing Unit
      * @param posPrec previous Position
-     * @param posSuiv next Position
+     * @param posSuiv new Position
      */
     void move(Position posPrec, Position posSuiv);
 
@@ -88,7 +87,7 @@ public:
     /**
      * @brief findPositionAvailable
      * @param posCur
-     * @return A random Position around the posCur, if it's not possible return position (-1, -1)
+     * @return A random empty Position around the posCur, if it's not possible return position (-1, -1)
      */
     Position findPositionAvailable(Position posCur) const;
 
