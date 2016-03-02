@@ -2,7 +2,6 @@
 #include "map.h"
 #include "iostream"
 #include <algorithm>
-//#include "randomgenerator.h"
 #include "gen.h"
 
 Game::Game()
@@ -11,35 +10,20 @@ Game::Game()
 
     Position pos(1,1);
 
-    //Building building1(1, pos, 0);
     Barracks * building1 = new Barracks(pos, 0);
     Position pos2(HEIGHT-2,WIDTH-2);
     map->add(building1->getName()[0], pos);
 
-    //Building building2(2, pos2, 0);
     Gateway * building2 = new Gateway(pos2, 1);
     map->add(building2->getName()[0], pos2);
 
     Position pos3(1,WIDTH-2);
-    //Building building3(3, pos3, 1);
     Hatchery * building3 = new Hatchery(pos3, 0);
     map->add(building3->getName()[0], pos3);
 
     Position pos4(HEIGHT-2, 1);
-    //Building building4(3, pos4, 1);
     Hatchery * building4 = new Hatchery(pos4, 1);
     map->add(building4->getName()[0], pos4);
-
-    /*
-    Position posTest(0,1);
-    map->add('T', posTest);
-    posTest.move(1,0);
-    map->add('T', posTest);
-    posTest.move(2,1);
-    map->add('T', posTest);
-    posTest.move(1,2);
-    map->add('T', posTest);
-    */
 
     VBuilding_.push_back(building1);
     VBuilding_.push_back(building2);
@@ -85,9 +69,7 @@ Game::Game(BuildingFactory fac, int teams, int perTeam, char races[16])
 
 bool Game::play()
 {
-     //RandomGenerator* randGen = RandomGenerator::get();
-    //Gen* gen = Gen::get();
-    //Ransomize vector of Building and vector of Unit for equality
+    //Randomize vector of Building and vector of Unit for equity
      std::random_shuffle ( VBuilding_.begin(), VBuilding_.end(), Gen());
      std::random_shuffle ( VUnit_.begin(), VUnit_.end(), Gen());
 
@@ -121,7 +103,6 @@ bool Game::play()
 
     for(unsigned int i =0; i<VBuilding_.size(); i++)
     {
-        //cout <<  VBuilding_[i]->getName() << " : " << VBuilding_[i]->getHitPoints() << endl;
     }
 
     //Erase Unit and Building who have hitPoints < 0

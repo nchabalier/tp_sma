@@ -5,7 +5,6 @@
 #include "game.h"
 #include <ctime>
 #include <unistd.h>
-//#include <windows.h> //For Sleep()
 #include "gen.h"
 
 using namespace std;
@@ -76,10 +75,10 @@ int main()
     while(game.play())
     {
         game.diplayMap();
-        usleep(10000);
+        usleep(5000);
         i++;
     }
-    cout << "This game has lasted " << i << " turns" << endl;
+    cout << "This game lasted " << i << " turns" << endl;
 
     return 0;
 }

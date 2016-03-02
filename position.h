@@ -4,8 +4,6 @@
 
 using namespace std;
 
-//class Building;
-//class Unit;
 
 /**
  * @brief The Position class allows the coordinated manipulation.

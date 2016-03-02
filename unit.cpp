@@ -9,39 +9,6 @@ Unit::Unit()
 {
 }
 
-/*
-Unit::Unit(string name, Position pos, int team)
-{
-    if (name == "Terran")
-    {
-        Agent(name, pos, team, 0, 45);
-        sight_ = 9;
-        moveSpeed_ = 4;
-        range_ = 5;
-        attackDamage_ = 6;
-        attackSpeed_ = 8;
-    }
-    else if (name == "Protoss")
-    {
-        Agent(name, pos, team, 0, 150);
-        sight_ = 8;
-        moveSpeed_ = 4;
-        range_ = 1;
-        attackDamage_ = 16;
-        attackSpeed_ = 12;
-    }
-    else if (name == "Zerg")
-    {
-        Agent(name, pos, team, 0, 35);
-        sight_ = 9;
-        moveSpeed_ = 3;
-        range_ = 1;
-        attackDamage_ = 5;
-        attackSpeed_ = 7;
-    }
-}
-*/
-
 Marine::Marine(Position pos, int team) : Unit("Marine", pos, team, 0, 45, 9, 4, 3, 5, 8){}
 
 Zealot::Zealot(Position pos, int team) : Unit("Zealot", pos, team, 0, 150, 8, 4, 1, 18,12){}
@@ -69,22 +36,14 @@ void Unit::doAction(vector<Building *> &VBuilding, vector<Unit *> &VUnit)
 
     Agent* closestTarget = closestAgent(bestDistance, posTarget, VUnit, VBuilding);
 
-    //cast du pointeur target en vector<Agent> iterator
-    //vector<Agent *>::iterator *targetIterator2 = static_cast<vector<Agent *>::iterator *>(targetIterator);
-
     if(bestDistance <= range_)
     {
-        //cout << "A l'attaque" << endl;
         closestTarget->takeDamage(attackDamage_);
         this->movingRecovery();
-
-        //cout << targetIterator->getHitPoints() << endl;
     }
     else
     {
-        //cout << "En direction de la cible" << endl;
         moveUnit(posTarget);
-        //moveUnit(closestA->getPos());
         this->attackRecovery();
     }
 }
@@ -119,7 +78,6 @@ void Unit::moveUnit(Position& pos)
         if(!map->isOccupied(newPos[0]) && !map->isOccupied(newPos[1]))
         {
             //random select
-            //cout << "select alea" << endl;
             posToSelec = alea;
         }
         else
@@ -165,25 +123,20 @@ Agent* Unit::closestAgent(double& bestDistance, Position &posTarget, vector<Unit
         if(closestTemp != nullptr)
         {
             closestA = closestTemp;
-            //cout << "Unite en vue" << endl;
         }
-    }
-    else
-    {
-        //cout << "Batiment en vue" << endl;
     }
     return closestA;
 }
 
 //--------------------------------------------------------Closest Building---------------------------------------
-//Return the closest Building in entire map
+//Return the closest Building in the entire map
 Building* Unit::closestBuilding(double& bestDistance, Position &posTarget, vector<Building *> &VBuilding)
 {
     Building* closestB = nullptr;
 
     for(auto it : VBuilding)
     {
-        if(team_ != it->getTeam()) //If it's not the building of the team
+        if(team_ != it->getTeam()) //If it's not a building of the team
         {
              double newDistance = getDistance(it->getPos());
              if(bestDistance == -1 || newDistance < bestDistance)
